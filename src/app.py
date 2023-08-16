@@ -35,8 +35,21 @@ def handle_hello():
         "family": members
     }
 
-
     return jsonify(response_body), 200
+
+@app.route('/member', methods=['POST'])
+def hola():
+    data = request.json # Siempre que sea metodo POST usar esto
+    member = {
+        "first_name": data.get("first_name"),
+        "age": data.get("age"),
+        "lucky_number": data.get("lucky_number")
+    }
+    # Hay que validar que hemos recibido bien los datos <<<-----
+    jackson_family.add_member(member)
+    
+    return "Todo OK", 200
+
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
