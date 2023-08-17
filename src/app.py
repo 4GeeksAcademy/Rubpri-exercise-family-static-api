@@ -29,16 +29,20 @@ def sitemap():
 def handle_hello():
 
     # this is how you can use the Family datastructure by calling its methods
-    members = jackson_family.get_all_members()
-    response_body = {
-        "hello": "world",
-        "family": members
-    }
-
+    response_body = jackson_family.get_all_members()
+    
     return jsonify(response_body), 200
+
+@app.route('/member/<int:member_id>', methods=['GET'])
+def member_id_get():
+
+    member = jackson_family.get_member(member_id)
+
+    return jsonify(member), 200
 
 @app.route('/member', methods=['POST'])
 def member_post():
+    
     data = request.json 
     member = {
         "first_name": data.get("first_name"),
@@ -47,7 +51,14 @@ def member_post():
     }
     jackson_family.add_member(member)
     
-    return jsonify(member), 200
+    return "Miembro agregado", 200
+
+@app.route('/member/<int:member_id>')
+def delete_member():
+
+    jackson_family = jackson_family.delete_member(member_id)
+
+    return "Eliminado con éxito", 200
 
 
 

@@ -46,13 +46,13 @@ class FamilyStructure:
         member["id"] = self._generateId() 
         member["last_name"] = self.last_name
         self._members.append(member)
-        print(self._members)
+        
         return self._members
 
     def delete_member(self, id):
         # fill this method and update the return
         self._members = [member for member in self._members if member["id"] != id]
-        print(self._members)
+        
         return self._members
 
     def update_member(self, id, member):
@@ -60,20 +60,19 @@ class FamilyStructure:
             if member_family["id"] == id:
                 index = self._members.index(member_family)
                 self._members[index] = member
-        print(self._members)
+        
         return self._members
 
     def get_member(self, id):
         # fill this method and update the return
         id_member = [member for member in self._members if member["id"] == id]
-        print(id_member)
+        
         return id_member
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
+        
         return self._members
 
-family = FamilyStructure("Jackson")
-rodriguez = {"first_name": "Juan", "last_name" : "Rodriguez"}
-family.update_member(1, rodriguez)
+
 
