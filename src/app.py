@@ -53,7 +53,7 @@ def member_post():
     
     return "Miembro agregado", 200
 
-@app.route('/member/<int:member_id>')
+@app.route('/member/<int:member_id>', methods=['DELETE'])
 def delete_member(member_id):
 
     jackson_family = jackson_family.delete_member(member_id)
