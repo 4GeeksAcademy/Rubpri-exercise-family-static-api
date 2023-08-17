@@ -15,7 +15,7 @@ class FamilyStructure:
         # example list of members
         self._members = [
         {
-            "id": self._generateId(),
+            "id": 1,
             "first_name": "John",
             "last_name": last_name,
             "age": 33,
@@ -42,8 +42,8 @@ class FamilyStructure:
         return randint(0, 99999999)
 
     def add_member(self, member):
-        # fill this method and update the return -DICCIONARIO
-        member["id"] = self._generateId() #Agrega un nº aleatorio a id dentro del diccionario
+        # fill this method and update the return
+        member["id"] = self._generateId() 
         member["last_name"] = self.last_name
         self._members.append(member)
         print(self._members)
@@ -51,17 +51,29 @@ class FamilyStructure:
 
     def delete_member(self, id):
         # fill this method and update the return
-        pass
+        self._members = [member for member in self._members if member["id"] != id]
+        print(self._members)
+        return self._members
+
+    def update_member(self, id, member):
+        for member_family in self._members:
+            if member_family["id"] == id:
+                index = self._members.index(member_family)
+                self._members[index] = member
+        print(self._members)
+        return self._members
 
     def get_member(self, id):
         # fill this method and update the return
-        pass
+        id_member = [member for member in self._members if member["id"] == id]
+        print(id_member)
+        return id_member
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
         return self._members
 
 family = FamilyStructure("Jackson")
-family.add_member({"first_name": "Juan", "age": 17, "lucky_numbers": [2, 4, 6]})
-
+rodriguez = {"first_name": "Juan", "last_name" : "Rodriguez"}
+family.update_member(1, rodriguez)
 
