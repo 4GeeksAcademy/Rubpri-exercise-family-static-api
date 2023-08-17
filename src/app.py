@@ -34,7 +34,7 @@ def handle_hello():
     return jsonify(response_body), 200
 
 @app.route('/member/<int:member_id>', methods=['GET'])
-def member_id_get():
+def member_id_get(member_id):
 
     member = jackson_family.get_member(member_id)
 
@@ -54,15 +54,11 @@ def member_post():
     return "Miembro agregado", 200
 
 @app.route('/member/<int:member_id>')
-def delete_member():
+def delete_member(member_id):
 
     jackson_family = jackson_family.delete_member(member_id)
 
     return "Eliminado con éxito", 200
-
-
-
-
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
